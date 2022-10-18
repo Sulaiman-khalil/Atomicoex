@@ -1,18 +1,22 @@
-import { c, css, useProp } from "atomico/core";
+import { c, css, useProp, Props } from "atomico/core";
 
-function showInput() {
-  const [message, setMessage] = useProp("message");
-  const [placeholder, setPlaceholder] = useProp("placeholder");
-  const [buttontext, setbuttontext] = useProp("buttontext");
+function showInput({
+  message,
+  placeholder,
+  buttontext,
+}: Props<typeof showInput>) {
+  // const [message, setMessage] = useProp("message");
+  // const [placeholder, setPlaceholder] = useProp("placeholder");
+  // const [buttontext, setbuttontext] = useProp("buttontext");
   return (
-    <div class="this">
+    <host>
       <div class="sbahn"> Hello {message}</div>
       <form>
         <input placeholder={placeholder}></input>
         <button>{buttontext}</button>
       </form>
       {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
-    </div>
+    </host>
   );
 }
 
