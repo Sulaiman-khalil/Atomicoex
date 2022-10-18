@@ -9,7 +9,7 @@ function showInput({
   // const [placeholder, setPlaceholder] = useProp("placeholder");
   // const [buttontext, setbuttontext] = useProp("buttontext");
   return (
-    <host>
+    <host shadowDom>
       <div class="sbahn"> Hello {message}</div>
       <form>
         <input placeholder={placeholder}></input>
@@ -22,8 +22,8 @@ function showInput({
 
 showInput.props = {
   message: {
+    // value from index.html
     type: String,
-    value: "world",
   },
   placeholder: {
     type: String,
