@@ -30,6 +30,7 @@ function showInput({
   //     current.setCustomValidity("");
   //   });
   // }, []);
+
   const [send, setSend] = useState(false);
   const [user, setUser] = useState();
   const [data, setData] = useState();
@@ -41,7 +42,7 @@ function showInput({
     send,
     [user]
   );
-
+  console.log(result);
   return (
     <host shadowDom>
       {/* <input type="email" ref={ref} />
@@ -61,22 +62,22 @@ function showInput({
           placeholder={placeholder}
           oninput={({ target }) => {
             setUser(target.value);
-            setSend(true);
           }}
         ></input>
         <button
           onclick={(e) => {
             e.preventDefault();
-
+            setSend(true);
             setData(result);
 
-            console.log(data);
+            console.log(send);
           }}
         >
           {buttontext}
         </button>
       </form>
-      <img></img>
+      <img src={result?.avatar_url} alt="image"></img>
+      <h1>{result?.name}</h1>
       {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
     </host>
   );
