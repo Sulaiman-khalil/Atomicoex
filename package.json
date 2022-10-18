@@ -22,6 +22,7 @@
     "atomico": "latest"
   },
   "devDependencies": {
+    "@atomico/hooks": "^3.48.0",
     "@atomico/scaffold": "^0.4.0",
     "@atomico/tsconfig": "^1.0.0",
     "@atomico/vite": "^2.0.0",

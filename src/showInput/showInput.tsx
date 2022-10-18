@@ -1,4 +1,13 @@
-import { c, css, useProp, Props } from "atomico/core";
+import {
+  c,
+  css,
+  useProp,
+  Props,
+  useRef,
+  useState,
+  useEffect,
+} from "atomico/core";
+import { usePromise } from "@atomico/hooks/use-promise";
 
 function showInput({
   message,
@@ -8,13 +17,66 @@ function showInput({
   // const [message, setMessage] = useProp("message");
   // const [placeholder, setPlaceholder] = useProp("placeholder");
   // const [buttontext, setbuttontext] = useProp("buttontext");
+  const [inputValue, setInputValue] = useState("");
+  const ref = useRef();
+  // const [messages, setMessages] = useState();
+  // useEffect(() => {
+  //   const { current } = ref;
+  //   console.log(ref);
+  //   current.addEventListener("input", () => {
+  //     if (current.validity.typeMismatch) {
+  //       setMessages("Invalid!");
+  //     }
+  //     current.setCustomValidity("");
+  //   });
+  // }, []);
+  const [send, setSend] = useState(false);
+  const [user, setUser] = useState();
+  const [data, setData] = useState();
+  const [result, status] = usePromise(
+    async () =>
+      await fetch("https://api.github.com/users/" + user).then((res) =>
+        res.json()
+      ),
+    send,
+    [user]
+  );
+
   return (
     <host shadowDom>
+      {/* <input type="email" ref={ref} />
+      {messages && <h1>{messages}</h1>} */}
       <div class="sbahn"> Hello {message}</div>
-      <form>
-        <input placeholder={placeholder}></input>
-        <button>{buttontext}</button>
+      <form
+      // onsubmit={
+      //   (e: Event) => {
+      //     e.preventDefault();
+      //     // setInputValue(e.target.value);
+      //     console.log(e.currentTarget.);
+      //   }
+      //   // setInputValue(e.target.value);
+      // }
+      >
+        <input
+          placeholder={placeholder}
+          oninput={({ target }) => {
+            setUser(target.value);
+            setSend(true);
+          }}
+        ></input>
+        <button
+          onclick={(e) => {
+            e.preventDefault();
+
+            setData(result);
+
+            console.log(data);
+          }}
+        >
+          {buttontext}
+        </button>
       </form>
+      <img></img>
       {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
     </host>
   );
