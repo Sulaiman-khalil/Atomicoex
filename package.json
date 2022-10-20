@@ -1,41 +1,41 @@
 {
-  "name": "atomico-base",
-  "description": "a repo to start with atomico",
-  "meta": {
-    "id": "vite",
-    "title": "Started - Atomico + Vite(JS,JSX,TS,TSX)",
-    "description": "Hassle-free starter template, perfect for starting with Atomico",
-    "branch": "https://github.com/atomicojs/atomico/tree/2-started/"
-  },
-  "workspaces": [
-    "src/*"
-  ],
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "create:component": "scaff component-tsx src"
-  },
-  "dependencies": {
-    "atomico": "latest",
-    "stylis": "^4.1.2"
-  },
-  "devDependencies": {
-    "@atomico/hooks": "^3.48.0",
-    "@atomico/scaffold": "^0.4.0",
-    "@atomico/tsconfig": "^1.0.0",
-    "@atomico/vite": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "eslint": "^8.25.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-airbnb-typescript-prettier": "^5.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.7.1",
-    "typescript": "^4.8.4",
-    "vite": "latest"
-  }
+    "name": "atomico-base",
+    "description": "a repo to start with atomico",
+    "meta": {
+        "id": "vite",
+        "title": "Started - Atomico + Vite(JS,JSX,TS,TSX)",
+        "description": "Hassle-free starter template, perfect for starting with Atomico",
+        "branch": "https://github.com/atomicojs/atomico/tree/2-started/"
+    },
+    "workspaces": [
+        "src/*"
+    ],
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "vite",
+        "build": "vite build",
+        "create:component": "scaff component-tsx src"
+    },
+    "dependencies": {
+        "atomico": "latest",
+        "stylis": "^4.1.2"
+    },
+    "devDependencies": {
+        "@atomico/hooks": "^3.48.0",
+        "@atomico/scaffold": "^0.4.0",
+        "@atomico/tsconfig": "^1.0.0",
+        "@atomico/vite": "^2.0.0",
+        "@typescript-eslint/eslint-plugin": "^5.40.1",
+        "eslint": "^8.25.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.7.1",
+        "typescript": "^4.8.4",
+        "vite": "latest"
+    }
 }
