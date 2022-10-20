@@ -111,19 +111,7 @@ showInput.styles = css`
     p {
         margin: 30px;
     }
-    .myimage {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .back {
-        display: flex;
-        margin: auto;
-        margin-top: 0.3px;
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-    }
+
     .profil {
         display: flex;
         justify-content: center;
