@@ -7,13 +7,9 @@ import {
   useState,
   useEffect,
 } from "atomico/core";
-import { usePromise } from "@atomico/hooks/use-promise";
+import { Status, usePromise } from "@atomico/hooks/use-promise";
 
-function showInput({
-  message,
-  placeholder,
-  buttontext,
-}: Props<typeof showInput>) {
+function showInput(props: Props<typeof showInput>) {
   // const [message, setMessage] = useProp("message");
   // const [placeholder, setPlaceholder] = useProp("placeholder");
   // const [buttontext, setbuttontext] = useProp("buttontext");
@@ -34,6 +30,12 @@ function showInput({
   const [send, setSend] = useState(false);
   const [user, setUser] = useState();
   const [data, setData] = useState();
+  const [check, setCheck] = useState(false);
+
+  useEffect(() => {
+    console.log(props.checked);
+  }, []);
+
   const [result, status] = usePromise(
     async () =>
       await fetch("https://api.github.com/users/" + user).then((res) =>
@@ -45,9 +47,10 @@ function showInput({
   console.log(result);
   return (
     <host shadowDom>
+      <input type="checkbox" checked={check}></input>
       {/* <input type="email" ref={ref} />
       {messages && <h1>{messages}</h1>} */}
-      <div class="sbahn"> Hello {message}</div>
+      <div class="sbahn"> Hello {props.message}</div>
       <form
       // onsubmit={
       //   (e: Event) => {
@@ -59,7 +62,7 @@ function showInput({
       // }
       >
         <input
-          placeholder={placeholder}
+          placeholder={props.placeholder}
           oninput={({ target }) => {
             setUser(target.value);
           }}
@@ -69,21 +72,29 @@ function showInput({
             e.preventDefault();
             setSend(true);
             setData(result);
+            setCheck(true);
 
             console.log(send);
           }}
         >
-          {buttontext}
+          {props.buttontext}
         </button>
       </form>
-      <img src={result?.avatar_url} alt="image"></img>
-      <h1>{result?.name}</h1>
+      {result && (
+        <>
+          <img src={result?.avatar_url} alt="image"></img>
+          <h1>{result?.name}</h1>
+          <h1>status: {status} </h1>
+        </>
+      )}
+
       {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
     </host>
   );
 }
 
 showInput.props = {
+  checked: Boolean,
   message: {
     // value from index.html
     type: String,
