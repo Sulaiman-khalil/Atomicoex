@@ -81,11 +81,11 @@ function showInput(props: Props<typeof showInput>) {
         </button>
       </form>
       {result && (
-        <>
+        <div class="de">
           <img src={result?.avatar_url} alt="image"></img>
           <h1>{result?.name}</h1>
           <h1>status: {status} </h1>
-        </>
+        </div>
       )}
 
       {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
@@ -109,13 +109,8 @@ showInput.props = {
   },
 };
 showInput.styles = css`
-  .this {
-    position: absloute;
-  }
-  .sbahn {
-    color: white;
-    background: black;
-    font-weight: bold;
+  :host {
+    display: flex;
   }
 `;
 export const ShowInput = c(showInput);
