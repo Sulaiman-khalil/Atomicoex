@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "atomico": "latest",
-    "eslint-config-airbnb-typescript": "^17.0.0",
     "stylis": "^4.1.2"
   },
   "devDependencies": {
@@ -28,8 +27,13 @@
     "@atomico/scaffold": "^0.4.0",
     "@atomico/tsconfig": "^1.0.0",
     "@atomico/vite": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
     "eslint": "^8.25.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4",
     "vite": "latest"
