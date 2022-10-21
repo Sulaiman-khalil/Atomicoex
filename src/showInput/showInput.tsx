@@ -23,6 +23,15 @@ function showInput({ message, placeholder, buttontext }) {
     const [data, setData] = useState();
     const [check, setCheck] = useState(false);
 
+    const [unsplash, status] = usePromise(
+        async () =>
+            await fetch(
+                `https://api.unsplash.com/photos/random?client_id=nIN9of7odLV7T3z7JRmoAx4SJpKHJYOoPXZ4LwRAlJE`
+            ).then((res) => res.json()),
+        true,
+        []
+    );
+
     return (
         <host shadowDom>
             <form>
@@ -42,7 +51,10 @@ function showInput({ message, placeholder, buttontext }) {
                     {buttontext}
                 </button>
             </form>
-            <github-card user={user}></github-card>
+            <div>
+                <img class="back" src={unsplash}></img>
+                <github-card user={user}></github-card>
+            </div>
             {/* {result && (
                 <div class="de">
                     <img src={result?.avatar_url} alt="image"></img>
@@ -108,62 +120,13 @@ showInput.styles = css`
         border: solid 3px salmon;
         background: black;
     }
-    p {
-        margin: 30px;
-    }
-
-    .profil {
+    .back {
         display: flex;
-        justify-content: center;
-        border-radius: 50%;
-        margin-top: -150px;
-        width: 30%;
-        border: 2px solid goldenrod;
-
-        /* margin-top: -150px;
-    width: 20%;
-    border-radius: 50%; */
-    }
-    .name {
-        color: goldenrod;
-        background: black;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: large;
-        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    }
-    .info {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    ul {
-    }
-    li {
-        border: 1px solid rgb(195, 195, 195);
-        list-style: none;
-        /* background: rgb(255, 255, 255); */
-        /* box-shadow: 10px 10px 50px 1px rgb(13, 1, 24); */
-    }
-    p {
-        color: black;
-        font-size: larger;
-        font-weight: 600;
-        background: whitesmoke;
-    }
-    span {
-        display: flex;
-        justify-content: center;
-        color: rgb(6, 6, 6);
-        font-size: 30px;
-        background: rgb(59, 96, 2);
-        color: whitesmoke;
-    }
-
-    .all {
-        background: black;
+        margin: auto;
+        margin-top: 0.3px;
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
     }
 `;
 export const ShowInput = c(showInput);
