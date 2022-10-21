@@ -51,10 +51,12 @@ function showInput({ message, placeholder, buttontext }) {
                     {buttontext}
                 </button>
             </form>
-            <div>
-                <img class="back" src={unsplash}></img>
-                <github-card user={user}></github-card>
-            </div>
+            {user && (
+                <div>
+                    <img class="back" src={unsplash.urls.regular}></img>
+                    <github-card user={user}></github-card>
+                </div>
+            )}
             {/* {result && (
                 <div class="de">
                     <img src={result?.avatar_url} alt="image"></img>
