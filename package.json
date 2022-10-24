@@ -1,5 +1,5 @@
 {
-    "name": "atomico-base",
+    "name": "atomico-prettier-eslint",
     "description": "a repo to start with atomico",
     "meta": {
         "id": "vite",
