@@ -7,66 +7,26 @@ function showInput({ message, placeholder, buttontext }) {
     // const [buttontext, setbuttontext] = useProp("buttontext");
     const [inputValue, setInputValue] = useState("");
 
-    // const [messages, setMessages] = useState();
-    // useEffect(() => {
-    //   const { current } = ref;
-    //   console.log(ref);
-    //   current.addEventListener("input", () => {
-    //     if (current.validity.typeMismatch) {
-    //       setMessages("Invalid!");
-    //     }
-    //     current.setCustomValidity("");
-    //   });
-    // }, []);
-
     const [user, setUser] = useState();
     const [data, setData] = useState();
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState();
 
-    const [unsplash, status] = usePromise(
-        async () =>
-            await fetch(
-                `https://api.unsplash.com/photos/random?client_id=nIN9of7odLV7T3z7JRmoAx4SJpKHJYOoPXZ4LwRAlJE`
-            ).then((res) => res.json()),
-        true,
-        []
-    );
-
+    const ref = useRef();
     return (
         <host shadowDom>
             <form>
-                <input
-                    placeholder={placeholder}
-                    oninput={({ target }) => {
-                        setUser(target.value);
-                    }}
-                ></input>
+                <input ref={ref} placeholder={placeholder}></input>
                 <button
                     onclick={(e) => {
                         e.preventDefault();
-
-                        setCheck(true);
+                        console.log(ref.current.value);
+                        setUser(ref.current.value);
                     }}
                 >
                     {buttontext}
                 </button>
             </form>
-            {user && (
-                <div>
-                    <img class="back" src={unsplash.urls.regular}></img>
-                    <github-card user={user}></github-card>
-                </div>
-            )}
-            {/* {result && (
-                <div class="de">
-                    <img src={result?.avatar_url} alt="image"></img>
-                    <h1 class="namo">{result?.name}</h1>
-                    <h1>followers: {result.followers}</h1>
-                    <h1>status: {status} </h1>
-                </div>
-            )} */}
-
-            {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
+            <github-card user={user}></github-card>
         </host>
     );
 }
@@ -76,7 +36,6 @@ showInput.props = {
     user: String,
     checked: Boolean,
     message: {
-        // value from index.html
         type: String,
     },
     placeholder: {
@@ -121,14 +80,6 @@ showInput.styles = css`
         color: white;
         border: solid 3px salmon;
         background: black;
-    }
-    .back {
-        display: flex;
-        margin: auto;
-        margin-top: 0.3px;
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
     }
 `;
 export const ShowInput = c(showInput);
