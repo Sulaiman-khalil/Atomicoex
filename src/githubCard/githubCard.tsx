@@ -11,6 +11,14 @@ import { Status, usePromise } from "@atomico/hooks/use-promise";
 
 function githubCard({ user }) {
     // }, []);
+    const [unsplash, statu] = usePromise(
+        async () =>
+            await fetch(
+                `https://api.unsplash.com/photos/random?client_id=nIN9of7odLV7T3z7JRmoAx4SJpKHJYOoPXZ4LwRAlJE`
+            ).then((res) => res.json()),
+        true,
+        []
+    );
 
     const [result, status] = usePromise(
         async () =>
@@ -26,36 +34,42 @@ function githubCard({ user }) {
 
     return (
         <host shadowDom>
-            <div class="all">
-                <div class="myimage">
-                    <img class="profil" src={result?.avatar_url}></img>
+            {user && (
+                <div class="all">
+                    <div>
+                        <img class="back" src={unsplash.urls.regular}></img>
+                        <github-card user={user}></github-card>
+                    </div>
+                    <div class="myimage">
+                        <img class="profil" src={result?.avatar_url}></img>
+                    </div>
+                    <div class="name">
+                        <h1> {result?.name}</h1>
+                    </div>
+                    <div class="secound">
+                        <ul class="info">
+                            <li>
+                                <p>Followers </p>
+                                <span>{result?.followers}</span>
+                            </li>
+                            <li>
+                                <p>Following</p>
+                                <span>{result?.following} </span>
+                            </li>
+                            <li>
+                                <p>Gists </p>
+                                <span>{result?.public_gists}</span>
+                            </li>
+                            <li>
+                                <p>Repos </p>
+                                <span>{result?.public_repos}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* </>
+                )} */}
                 </div>
-                <div class="name">
-                    <h1> {result?.name}</h1>
-                </div>
-                <div class="secound">
-                    <ul class="info">
-                        <li>
-                            <p>Followers </p>
-                            <span>{result?.followers}</span>
-                        </li>
-                        <li>
-                            <p>Following</p>
-                            <span>{result?.following} </span>
-                        </li>
-                        <li>
-                            <p>Gists </p>
-                            <span>{result?.public_gists}</span>
-                        </li>
-                        <li>
-                            <p>Repos </p>
-                            <span>{result?.public_repos}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            {/* <input class="in" oninput={({ target }) => setMessage(target.value)} /> */}
+            )}
         </host>
     );
 }
@@ -129,6 +143,14 @@ githubCard.styles = css`
 
     .all {
         background: black;
+    }
+    .back {
+        display: flex;
+        margin: auto;
+        margin-top: 0.3px;
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
     }
 `;
 export const GithubCard = c(githubCard);
