@@ -11,14 +11,15 @@ import { Status, usePromise } from "@atomico/hooks/use-promise";
 
 function githubCard({ user }) {
     // }, []);
-    const [unsplash, statu] = usePromise(
-        async () =>
-            await fetch(
-                `https://api.unsplash.com/photos/random?client_id=nIN9of7odLV7T3z7JRmoAx4SJpKHJYOoPXZ4LwRAlJE`
-            ).then((res) => res.json()),
-        true,
-        []
-    );
+
+    // const [unsplash, statu] = usePromise(
+    //     async () =>
+    //         await fetch(
+    //             `https://api.unsplash.com/photos/random?client_id=nIN9of7odLV7T3z7JRmoAx4SJpKHJYOoPXZ4LwRAlJE`
+    //         ).then((res) => res.json()),
+    //     true,
+    //     []
+    // );
 
     const [result, status] = usePromise(
         async () =>
@@ -30,16 +31,27 @@ function githubCard({ user }) {
     );
     useEffect(() => {
         console.log(result);
-    }, []);
+        // console.log(statu);
+        console.log(status);
+    });
 
     return (
         <host shadowDom>
-            {user && (
-                <div class="all">
+            <div class="all">
+                {/* {user && (
                     <div>
                         <img class="back" src={unsplash.urls.regular}></img>
                         <github-card user={user}></github-card>
                     </div>
+                )} */}
+                <div>
+                    <img
+                        class="back"
+                        src="https://source.unsplash.com/random"
+                    ></img>
+                </div>
+
+                <div class="user">
                     <div class="myimage">
                         <img class="profil" src={result?.avatar_url}></img>
                     </div>
@@ -66,10 +78,9 @@ function githubCard({ user }) {
                             </li>
                         </ul>
                     </div>
-                    {/* </>
-                )} */}
                 </div>
-            )}
+            </div>
+            <h1>{result}</h1>
         </host>
     );
 }
@@ -77,6 +88,7 @@ function githubCard({ user }) {
 githubCard.props = {
     result: Object,
     user: String,
+    setSend: Boolean,
 };
 githubCard.styles = css`
     .myimage {
