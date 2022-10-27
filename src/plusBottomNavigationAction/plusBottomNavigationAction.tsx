@@ -1,10 +1,14 @@
 import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
+import { iconData } from "../icon/ddata";
 
 function plusBottomNavigationAction({ icon, label }) {
     return (
         <host shadowDom>
             <div class="plus-bottom-navigation-action">
+                <slot>
+                    <icon-home data={icon}></icon-home>
+                </slot>
                 <span class="label-span">{label}</span>
             </div>
         </host>
@@ -14,6 +18,11 @@ function plusBottomNavigationAction({ icon, label }) {
 plusBottomNavigationAction.props = {
     label: {
         type: String,
+    },
+    icon: {
+        icon: {
+            type: String,
+        },
     },
 };
 plusBottomNavigationAction.styles = css`
