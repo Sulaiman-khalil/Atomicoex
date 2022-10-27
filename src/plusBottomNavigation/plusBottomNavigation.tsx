@@ -1,14 +1,6 @@
 import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
 
-import {
-    barmerData,
-    homeData,
-    healthData,
-    kompassData,
-    bounsData,
-} from "../icon/dData";
-
 function plusBottomNavigation({}) {
     return (
         <host shadowDom>
