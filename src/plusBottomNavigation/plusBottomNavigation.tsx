@@ -24,43 +24,9 @@ function plusBottomNavigation({}) {
                     </defs>
                 </svg>
 
-                <ul class="all-all">
-                    <li class="home">
-                        <a>
-                            <icon-home data={homeData} color=""></icon-home>
-                            <plus-bottom-navigation-action label="home"></plus-bottom-navigation-action>
-                        </a>
-                    </li>
-
-                    <li class="home">
-                        <a>
-                            {" "}
-                            <icon-home data={healthData} color=""></icon-home>
-                            <plus-bottom-navigation-action label="Gesundheit"></plus-bottom-navigation-action>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <icon-home
-                                data={barmerData}
-                                color="green"
-                            ></icon-home>
-                            <plus-bottom-navigation-action label="Service"></plus-bottom-navigation-action>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <icon-home data={bounsData} color=""></icon-home>
-                            <plus-bottom-navigation-action label="Bonus"></plus-bottom-navigation-action>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <icon-home data={kompassData} color=""></icon-home>
-                            <plus-bottom-navigation-action label="Kompass"></plus-bottom-navigation-action>
-                        </a>
-                    </li>
-                </ul>
+                <div class="all-all">
+                    <slot></slot>
+                </div>
             </div>
         </host>
     );
@@ -68,22 +34,6 @@ function plusBottomNavigation({}) {
 
 plusBottomNavigation.props = {};
 plusBottomNavigation.styles = css`
-    ul {
-    }
-    li {
-        list-style: none;
-    }
-    a {
-        display: flex;
-        justify-contet: center;
-        align-items: center;
-        flex-direction: column;
-        list-style: none;
-        flex-grow: 1;
-        flex-basis: 0px;
-        margin-bottom: -2px;
-        cursor: pointer;
-    }
     .all-of-all {
         dispaly: flex;
         min-height: 82px;
