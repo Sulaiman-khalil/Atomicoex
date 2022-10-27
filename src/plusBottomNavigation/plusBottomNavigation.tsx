@@ -52,7 +52,7 @@ plusBottomNavigation.styles = css`
         padding-left: 0px;
         padding-top: 16px;
         padding-bottom: 12px;
-        background-color: rgb(46, 46, 46);
+        background-color: rgb(255, 255, 255);
         width: 100%;
     }
     // .let {
