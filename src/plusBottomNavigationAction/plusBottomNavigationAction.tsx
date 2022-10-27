@@ -1,14 +1,27 @@
 import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
 
-function plusBottomNavigationAction({ icon, label }) {
+function plusBottomNavigationAction({ icon, label, iconcolor }) {
+    const [floating, setFloating] = useState(true);
     return (
         <host shadowDom>
             <div class="plus-bottom-navigation-action">
-                <slot>
-                    <icon-home data={icon}></icon-home>
-                </slot>
-                <span class="label-span">{label}</span>
+                <a
+                    class="anchortag"
+                    onclick={(e) => {
+                        setFloating(!floating);
+                    }}
+                >
+                    <slot>
+                        <icon-home
+                            data={icon}
+                            color={floating ? "rgb(179, 179, 179)" : "#000000"}
+                        ></icon-home>
+                    </slot>
+                    <span class={floating ? "label-span" : "label-active"}>
+                        {label}
+                    </span>
+                </a>
             </div>
         </host>
     );
@@ -23,9 +36,12 @@ plusBottomNavigationAction.props = {
             type: String,
         },
     },
+    iconcolor: {
+        type: String,
+    },
 };
 plusBottomNavigationAction.styles = css`
-    .anchor-tag {
+    a {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
@@ -36,6 +52,28 @@ plusBottomNavigationAction.styles = css`
         cursor: pointer;
     }
 
+    #active span {
+        color: #000000;
+    }
+    #active svg {
+        fill: #000000;
+    }
+    .label-active {
+        color: rgb(0, 0, 0);
+        line-height: 18px;
+        letter-spacing: 0.12px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: 400;
+        max-width: 100%;
+        font-family: titillium-web, sans-serif;
+        padding-left: 4px;
+        padding-right: 4px;
+        overflow-wrap: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
     .label-span {
         color: rgb(179, 179, 179);
         line-height: 18px;

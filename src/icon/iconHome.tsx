@@ -1,6 +1,7 @@
 import { Props, c } from "atomico";
 
 function iconHome({ color, width, height, data }: Props<typeof iconHome>) {
+    console.log(color);
     return (
         <host>
             <svg
@@ -18,6 +19,7 @@ function iconHome({ color, width, height, data }: Props<typeof iconHome>) {
 iconHome.props = {
     color: {
         type: String,
+        value: "rgb(109, 109, 109)",
     },
     width: {
         type: String,
