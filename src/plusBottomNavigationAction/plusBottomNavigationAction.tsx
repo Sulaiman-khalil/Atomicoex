@@ -1,6 +1,5 @@
 import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
-import { iconData } from "../icon/ddata";
 
 function plusBottomNavigationAction({ icon, label }) {
     return (
