@@ -15,7 +15,7 @@ function plusBottomNavigationAction({ icon, label, iconcolor }) {
                     <slot>
                         <icon-home
                             data={icon}
-                            color={floating ? "rgb(179, 179, 179)" : "#000000"}
+                            color={floating ? "#b3b3b3" : "#000000"}
                         ></icon-home>
                     </slot>
                     <span class={floating ? "label-span" : "label-active"}>
@@ -59,7 +59,7 @@ plusBottomNavigationAction.styles = css`
         fill: #000000;
     }
     .label-active {
-        color: rgb(0, 0, 0);
+        color: #000000;
         line-height: 18px;
         letter-spacing: 0.12px;
         font-size: 12px;
@@ -75,7 +75,7 @@ plusBottomNavigationAction.styles = css`
         overflow: hidden;
     }
     .label-span {
-        color: rgb(179, 179, 179);
+        color: #b3b3b3;
         line-height: 18px;
         letter-spacing: 0.12px;
         font-size: 12px;
