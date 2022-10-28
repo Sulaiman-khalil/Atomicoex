@@ -2,9 +2,10 @@ import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
 
 function plusBottomNavigation({}) {
+    const [active, setActive] = useState(true);
     return (
         <host shadowDom>
-            <div class="all-of-all">
+            <div class="all">
                 <svg width="0" height="0" aria-hidden="true">
                     <defs>
                         <clipPath
@@ -26,12 +27,15 @@ function plusBottomNavigation({}) {
 
 plusBottomNavigation.props = {};
 plusBottomNavigation.styles = css`
-    .all-of-all {
+    .all {
         dispaly: flex;
         min-height: 82px;
         right: 0px;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+    }
+    .all-of-all {
     }
 
     .all-all {
