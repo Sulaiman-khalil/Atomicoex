@@ -1,27 +1,16 @@
 import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
 
-function plusBottomNavigationAction({ icon, label, iconcolor }) {
-    const [floating, setFloating] = useState(true);
+function plusBottomNavigationAction({ icon, label, floating }) {
+    const [active, setActive] = useState(true);
     return (
         <host shadowDom>
-            <div class="plus-bottom-navigation-action">
-                <a
-                    class="anchortag"
-                    onclick={(e) => {
-                        setFloating(!floating);
-                    }}
-                >
-                    <slot>
-                        <icon-home
-                            data={icon}
-                            color={floating ? "#b3b3b3" : "#000000"}
-                        ></icon-home>
-                    </slot>
-                    <span class={floating ? "label-span" : "label-active"}>
-                        {label}
-                    </span>
-                </a>
+            <div class="label-icon">
+                <slot>
+                    <icon-home data={icon}></icon-home>
+                </slot>
+
+                <span class="label-span">{label}</span>
             </div>
         </host>
     );
@@ -32,15 +21,18 @@ plusBottomNavigationAction.props = {
         type: String,
     },
     icon: {
-        icon: {
-            type: String,
-        },
-    },
-    iconcolor: {
         type: String,
     },
+
+    floating: { type: Boolean },
 };
 plusBottomNavigationAction.styles = css`
+    .label-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-contet;space-between;
+    }
     a {
         display: flex;
         flex-direction: column;
