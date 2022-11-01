@@ -49,7 +49,7 @@ plusBottomNavigationAction.styles = css`
         text-align: center;
         font-weight: 400;
         width: 100%;
-        font-family: titillium-web, sans-serif;
+        font-family: "Titillium Web", sans-serif;
     }
     .label-active {
         text-decoration: underline;
