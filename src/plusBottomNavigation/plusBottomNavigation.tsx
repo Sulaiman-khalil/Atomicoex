@@ -1,8 +1,6 @@
-import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
-import { Status, usePromise } from "@atomico/hooks/use-promise";
+import { c, css, Props } from "atomico/core";
 
 function plusBottomNavigation({ value }) {
-    // const [active, setActive] = useState(true);
     return (
         <host shadowDom>
             <div class="all">

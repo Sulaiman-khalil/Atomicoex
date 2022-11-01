@@ -1,21 +1,8 @@
-import {
-    c,
-    css,
-    Props,
-    useRef,
-    useState,
-    useEffect,
-    useEvent,
-    useProp,
-} from "atomico/core";
-import { Status, usePromise } from "@atomico/hooks/use-promise";
+import { c, css, Props, useEvent } from "atomico/core";
 
 function plusBottomNavigationAction({ label, active }) {
-    // console.log(focused);
-    // const [active, setActive] = useState(true);
-    // const [focused, setFocused] = useProp("focused");
     const dispatch = useEvent("Click", { bubbles: true, composed: true });
-    // console.log("focused", focused);
+
     return (
         <host shadowDom>
             <a
