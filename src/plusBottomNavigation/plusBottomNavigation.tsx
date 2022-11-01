@@ -20,14 +20,7 @@ function plusBottomNavigation({ value }) {
                 <div class="all-all">
                     <slot
                         onClick={({ currentTarget, target }) => {
-                            console.log(
-                                "first",
-                                currentTarget.assignedElements(),
-                                target
-                            );
                             currentTarget.assignedElements().map((element) => {
-                                console.log(element.label !== "Service");
-
                                 element.active = element === target;
                             });
                         }}
@@ -51,11 +44,11 @@ plusBottomNavigation.styles = css`
         padding-left: 0px;
         padding-top: 16px;
         padding-bottom: 12px;
-        background-color: rgb(255, 255, 255);
+        background-color: #ffffff;
         width: 100%;
     }
     .all-all .slot {
-        color: white;
+        color: #ffffff;
     }
     /* .all {
         display: flex;
