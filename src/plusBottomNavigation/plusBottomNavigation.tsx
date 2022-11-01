@@ -50,51 +50,6 @@ plusBottomNavigation.styles = css`
     .all-all .slot {
         color: #ffffff;
     }
-    /* .all {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: row;
-    } */
-    /* .all {
-        box-shadow: 100px 0px 30px silver;
-        display: flex;
-        min-height: 82px;
-        right: 0px;
-        left: 0px;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        width: 100%;
-    }
-    .all-of-all {
-    }
-    .all-all {
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        clip-path: url(#bottom-navigation-mask);
-        padding-right: 0px;
-        padding-left: 0px;
-        padding-top: 16px;
-        padding-bottom: 12px;
-        background-color: rgb(255, 255, 255);
-        width: 100%;
-    } 
-    /* // .let {
-    //     display: flex;
-    //     position: absolute;
-    //     background-color: rgb(46, 46, 46);
-    //     width: 72px;
-    //     min-height: 72px;
-    //     margin-left: -36px;
-    //     left: 50%;
-    //     z-index: 0;
-    //     justify-content: center;
-    //     pointer-events: none !important;
-    // }
-     */
 `;
 
 export const PlusBottomNavigation = c(plusBottomNavigation);
