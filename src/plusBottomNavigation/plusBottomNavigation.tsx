@@ -26,6 +26,8 @@ function plusBottomNavigation({ value }) {
                                 target
                             );
                             currentTarget.assignedElements().map((element) => {
+                                console.log(element.label !== "Service");
+
                                 element.active = element === target;
                             });
                         }}

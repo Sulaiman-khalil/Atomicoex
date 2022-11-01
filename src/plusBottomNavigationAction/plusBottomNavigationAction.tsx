@@ -19,7 +19,7 @@ function plusBottomNavigationAction({ label, active }) {
     return (
         <host shadowDom>
             <div
-                class={`label-icon ${active ? "label-active" : "label-icon"}`}
+                class={active ? "label-active" : "label-icon"}
                 onclick={dispatch}
             >
                 {/* <icon-home data={icon}></icon-home> */}
@@ -31,11 +31,7 @@ function plusBottomNavigationAction({ label, active }) {
                     <slot />
                 )} */}
                 <slot />
-                <span
-                    class={`label-span ${
-                        active ? "label-active-span" : "label-span"
-                    }`}
-                >
+                <span class={active ? "label-active-span" : "label-span"}>
                     {label}
                 </span>
             </div>
@@ -59,15 +55,55 @@ plusBottomNavigationAction.props = {
     active: Boolean,
 };
 plusBottomNavigationAction.styles = css`
-    .label-active-span {
+.label-icon{
+    flex: 1; /* additionally, equal width */
+  
+ 
+  border:0px solid;
+    color:grey;
+    fill:currentColor;
+    cursor: pointer;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-left: 50px;
+        padding-right: 50px;
+        max-width: 100%;
+        line-height: 18px;
+        letter-spacing: 0.12px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: 400;
+        max-width: 100%;
+        font-family: titillium-web, sans-serif;
+}
+.label-active{
+    color:black;
+    cursor: pointer;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-left: 50px;
+        padding-right: 50px;
+        max-width: 100%;
+        line-height: 18px;
+        letter-spacing: 0.12px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: 400;
+        max-width: 100%;
+        font-family: titillium-web, sans-serif;
+}
+    /* .label-active-span {
         color: #000000;
-    }
-    .label-active {
+        fill: #000000;
+    } */
+    /* .label-active {
         color: #000000;
         fill: black;
         background-color: #f0d0d0;
-    }
-    .label-icon {
+    } */
+    /* .label-icon {
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -76,10 +112,9 @@ plusBottomNavigationAction.styles = css`
         padding-right: 50px;
         color: #6d6d6d;
         max-width: 100%;
-    }
-    .label-span:hover {
-    }
-    .label-span {
+    } */
+
+    /* .label-span {
         line-height: 18px;
         letter-spacing: 0.12px;
         font-size: 12px;
@@ -87,13 +122,14 @@ plusBottomNavigationAction.styles = css`
         font-weight: 400;
         max-width: 100%;
         font-family: titillium-web, sans-serif;
+        color: grey;
         /* padding-left: 4px;
         padding-right: 4px; */
         /* overflow-wrap: normal;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden; */
-    }
+    } */
     /* .label-icon {
         display: flex;
         flex-direction: column;
