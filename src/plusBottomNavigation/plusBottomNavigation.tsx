@@ -1,8 +1,8 @@
 import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
 
-function plusBottomNavigation({}) {
-    const [active, setActive] = useState(true);
+function plusBottomNavigation({ value }) {
+    // const [active, setActive] = useState(true);
     return (
         <host shadowDom>
             <div class="all">
@@ -18,26 +18,62 @@ function plusBottomNavigation({}) {
                 </svg>
 
                 <div class="all-all">
-                    <slot></slot>
+                    <slot
+                        onClick={({ currentTarget, target }) => {
+                            console.log(
+                                "first",
+                                currentTarget.assignedElements(),
+                                target
+                            );
+                            currentTarget.assignedElements().map((element) => {
+                                element.active = element === target;
+                            });
+                        }}
+                    ></slot>
                 </div>
             </div>
         </host>
     );
 }
 
-plusBottomNavigation.props = {};
+plusBottomNavigation.props = {
+    value: { type: String },
+};
+
 plusBottomNavigation.styles = css`
-    .all {
-        dispaly: flex;
+    .all-all {
+        display: flex;
+        justify-content: space-evenly;
+        clip-path: url(#bottom-navigation-mask);
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-top: 16px;
+        padding-bottom: 12px;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+    }
+    .all-all .slot {
+        color: white;
+    }
+    /* .all {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+    } */
+    /* .all {
+        box-shadow: 100px 0px 30px silver;
+        display: flex;
         min-height: 82px;
         right: 0px;
+        left: 0px;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        width: 100%;
     }
     .all-of-all {
     }
-
     .all-all {
         display: flex;
         align-items: center;
@@ -50,8 +86,8 @@ plusBottomNavigation.styles = css`
         padding-bottom: 12px;
         background-color: rgb(255, 255, 255);
         width: 100%;
-    }
-    // .let {
+    } 
+    /* // .let {
     //     display: flex;
     //     position: absolute;
     //     background-color: rgb(46, 46, 46);
@@ -63,7 +99,9 @@ plusBottomNavigation.styles = css`
     //     justify-content: center;
     //     pointer-events: none !important;
     // }
+     */
 `;
+
 export const PlusBottomNavigation = c(plusBottomNavigation);
 
 customElements.define("plus-bottom-navigation", PlusBottomNavigation);

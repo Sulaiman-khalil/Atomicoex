@@ -1,16 +1,43 @@
-import { c, css, Props, useRef, useState, useEffect } from "atomico/core";
+import {
+    c,
+    css,
+    Props,
+    useRef,
+    useState,
+    useEffect,
+    useEvent,
+    useProp,
+} from "atomico/core";
 import { Status, usePromise } from "@atomico/hooks/use-promise";
 
-function plusBottomNavigationAction({ icon, label, floating }) {
-    const [active, setActive] = useState(true);
+function plusBottomNavigationAction({ label, active }) {
+    // console.log(focused);
+    // const [active, setActive] = useState(true);
+    // const [focused, setFocused] = useProp("focused");
+    const dispatch = useEvent("Click", { bubbles: true, composed: true });
+    // console.log("focused", focused);
     return (
         <host shadowDom>
-            <div class="label-icon">
-                <slot>
-                    <icon-home data={icon}></icon-home>
-                </slot>
-
-                <span class="label-span">{label}</span>
+            <div
+                class={`label-icon ${active ? "label-active" : "label-icon"}`}
+                onclick={dispatch}
+            >
+                {/* <icon-home data={icon}></icon-home> */}
+                {/* {active ? (
+                    <strong>
+                        <slot /> hvhjvhjvhjvhj
+                    </strong>
+                ) : (
+                    <slot />
+                )} */}
+                <slot />
+                <span
+                    class={`label-span ${
+                        active ? "label-active-span" : "label-span"
+                    }`}
+                >
+                    {label}
+                </span>
             </div>
         </host>
     );
@@ -24,10 +51,50 @@ plusBottomNavigationAction.props = {
         type: String,
     },
 
-    floating: { type: Boolean },
+    focused: {
+        type: Boolean,
+        value: false,
+        reflect: true,
+    },
+    active: Boolean,
 };
 plusBottomNavigationAction.styles = css`
+    .label-active-span {
+        color: #000000;
+    }
+    .label-active {
+        color: #000000;
+        fill: black;
+        background-color: #f0d0d0;
+    }
     .label-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-left: 50px;
+        padding-right: 50px;
+        color: #6d6d6d;
+        max-width: 100%;
+    }
+    .label-span:hover {
+    }
+    .label-span {
+        line-height: 18px;
+        letter-spacing: 0.12px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: 400;
+        max-width: 100%;
+        font-family: titillium-web, sans-serif;
+        /* padding-left: 4px;
+        padding-right: 4px; */
+        /* overflow-wrap: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; */
+    }
+    /* .label-icon {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -66,28 +133,13 @@ plusBottomNavigationAction.styles = css`
         text-overflow: ellipsis;
         overflow: hidden;
     }
-    .label-span {
-        color: #b3b3b3;
-        line-height: 18px;
-        letter-spacing: 0.12px;
-        font-size: 12px;
-        text-align: center;
-        font-weight: 400;
-        max-width: 100%;
-        font-family: titillium-web, sans-serif;
-        padding-left: 4px;
-        padding-right: 4px;
-        overflow-wrap: normal;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
+    
     .plus-bottom-navigation-action {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-contet: center;
-    }
+    
+    } */
     // .one {
     //     display: flex;
     //     flex-direction: column;
