@@ -1,3 +1,7 @@
 body {
     background: rgb(242, 240, 240);
 }
+plus-bottom-navigation-action {
+    display: flex;
+    width: 100%;
+}
