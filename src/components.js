@@ -2,4 +2,4 @@
 // export { GithubCard } from "./githubCard/githubCard";
 export { PlusBottomNavigation } from "./plusBottomNavigation/plusBottomNavigation";
 export { PlusBottomNavigationAction } from "./plusBottomNavigationAction/plusBottomNavigationAction";
-export { IconHome } from "./icon/iconHome.tsx";
+// export { IconHome } from "./icon/iconHome.tsx";
