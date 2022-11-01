@@ -22,14 +22,6 @@ function plusBottomNavigationAction({ label, active }) {
                 class={`label ${active ? "label-active" : "label"}`}
                 onclick={dispatch}
             >
-                {/* <icon-home data={icon}></icon-home> */}
-                {/* {active ? (
-                    <strong>
-                        <slot /> hvhjvhjvhjvhj
-                    </strong>
-                ) : (
-                    <slot />
-                )} */}
                 <slot />
                 <span class={`label ${active ? "label-active" : "label-span"}`}>
                     {label}
