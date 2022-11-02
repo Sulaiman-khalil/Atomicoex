@@ -33,10 +33,6 @@ plusBottomNavigation.props = {
 };
 
 plusBottomNavigation.styles = css`
-    .all {
-        background-color: rgb(242, 240, 240);
-        min-height: 82px;
-    }
     .all-all {
         display: flex;
         justify-content: space-between;
