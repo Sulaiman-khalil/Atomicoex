@@ -34,7 +34,26 @@ plusBottomNavigation.props = {
 };
 
 plusBottomNavigation.styles = css`
+    .all {
+        height: 100vh;
+        background-color: rgb(242, 240, 240);
+        min-height: 82px;
+    }
     .all-all {
+        display: flex;
+        justify-content: space-between;
+        background-color: #ffffff;
+        padding-top: 16px;
+        padding-bottom: 12px;
+        position: absolute;
+
+        right: 0px;
+        left: 0px;
+        bottom: 0px;
+        clip-path: url(#bottom-navigation-mask);
+        width: 100%;
+        filter: drop-shadow(rgba(0, 0, 0, 0.14) 0px 0px 24px);
+    /* .all-all {
         display: flex;
         justify-content: space-evenly;
         clip-path: url(#bottom-navigation-mask);
@@ -44,10 +63,24 @@ plusBottomNavigation.styles = css`
         padding-bottom: 12px;
         background-color: #ffffff;
         width: 100%;
+       
+    }
+    .toclip {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        border-radius: 999px;
+        clip-path: url(#bottom-navigation-mask);
+        width: 72px;
+        min-height: 72px;
+        margin-left: -36px;
+        left: 50%;
+
+        background-color: rgb(255, 255, 255);
     }
     .all-all .slot {
         color: #ffffff;
-    }
+    } */
 `;
 
 export const PlusBottomNavigation = c(plusBottomNavigation);
