@@ -4,18 +4,17 @@ function plusBottomNavigation({ value }) {
     return (
         <host shadowDom>
             <div class="all">
-                <svg width="0" height="0" aria-hidden="true">
-                    <defs>
-                        <clipPath
-                            id="bottom-navigation-mask"
-                            clipPathUnits="objectBoundingBox"
-                        >
-                            <path d="M 0,0 C 0.167,0.081 0.333,0.122 0.5,0.122 0.667,0.122 0.833,0.081 1,0 V 1 H 0 Z"></path>
-                        </clipPath>
-                    </defs>
-                </svg>
-
                 <div class="all-all">
+                    <svg width="0" height="0" aria-hidden="true">
+                        <defs>
+                            <clipPath
+                                id="bottom-navigation-mask"
+                                clipPathUnits="objectBoundingBox"
+                            >
+                                <path d="M 0,0 C 0.167,0.081 0.333,0.122 0.5,0.122 0.667,0.122 0.833,0.081 1,0 V 1 H 0 Z"></path>
+                            </clipPath>
+                        </defs>
+                    </svg>
                     <slot
                         onClick={({ currentTarget, target }) => {
                             currentTarget.assignedElements().map((element) => {
@@ -35,7 +34,6 @@ plusBottomNavigation.props = {
 
 plusBottomNavigation.styles = css`
     .all {
-        height: 100vh;
         background-color: rgb(242, 240, 240);
         min-height: 82px;
     }
@@ -46,13 +44,14 @@ plusBottomNavigation.styles = css`
         padding-top: 16px;
         padding-bottom: 12px;
         position: absolute;
-
         right: 0px;
         left: 0px;
         bottom: 0px;
         clip-path: url(#bottom-navigation-mask);
         width: 100%;
-        filter: drop-shadow(rgba(0, 0, 0, 0.14) 0px 0px 24px);
+
+        filter: drop-shadow(0 -6mm 4mm rgb(160, 0, 210));
+    }
     /* .all-all {
         display: flex;
         justify-content: space-evenly;
