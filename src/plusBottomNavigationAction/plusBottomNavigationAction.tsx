@@ -10,6 +10,7 @@ function plusBottomNavigationAction({ label, active }) {
                 tabindex="0"
                 class={`anch ${active ? "anch-active" : "label"}`}
                 onclick={dispatch}
+                value={label}
             >
                 <div class="icondiv">
                     <slot />
@@ -72,6 +73,26 @@ plusBottomNavigationAction.styles = css`
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow-wrap: normal;
+    }
+    .anch-active {
+        color: black;
+        fill: currentColor;
+    }
+    .anch-span {
+        position: relative;
+    }
+
+    .label-active:after {
+        display: flex;
+        position: absolute;
+        height: 2px;
+        bottom: 0px;
+        background-color: rgb(105, 165, 0);
+        right: 0;
+        left: 0;
+        content: "";
+
+        border-radius: 999px;
     }
     /* .col-container {
         display: table; 
