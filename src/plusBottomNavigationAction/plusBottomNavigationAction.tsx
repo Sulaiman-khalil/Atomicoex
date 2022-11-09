@@ -1,30 +1,30 @@
-import { c, css, Props, useEvent } from "atomico/core";
+import { c, css, Props, Ref, useEvent, useRef, useState } from "atomico/core";
 
-function plusBottomNavigationAction({ label, active }) {
-    const dispatch = useEvent("Click", { bubbles: true, composed: true });
-
+function plusBottomNavigationAction(
+    props: Props<typeof plusBottomNavigationAction>
+) {
+    // const dispatch = useEvent("Click", { bubbles: true, composed: true });
+    const ref = useRef();
+    const children = useSlot(ref);
     return (
         <host shadowDom>
-            <div
+            <a
                 role="button"
                 tabindex="0"
-                class={`anch ${active ? "anch-active" : "label"}`}
-                onclick={dispatch}
-                value={label}
+                class="anch"
+
+                // onclick={dispatch}
             >
                 <div class="icondiv">
-                    <slot />
+                    <slot ref={ref} />
+                    <h1>
+                        Slot:
+                        {children.filter((el) => el instanceof Element).length}
+                    </h1>
                 </div>
-                <div class="spandiv">
-                    <span
-                        class={`anch-span ${
-                            active ? "label-active" : "label-span"
-                        }`}
-                    >
-                        {label}
-                    </span>
-                </div>
-            </div>
+
+                <span class="anch-span">{props.label}</span>
+            </a>
         </host>
     );
 }
@@ -32,19 +32,76 @@ function plusBottomNavigationAction({ label, active }) {
 plusBottomNavigationAction.props = {
     label: {
         type: String,
+        value: "sdsd",
     },
-    icon: {
-        type: String,
-    },
-
-    focused: {
-        type: Boolean,
-        value: false,
-        reflect: true,
-    },
-    active: Boolean,
 };
 plusBottomNavigationAction.styles = css`
+    :host {
+        display: flex;
+        width: 100%;
+    }
+
+    .anch {
+        display: flex;
+
+        cursor: pointer;
+        margin-bottom: -2px;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-basis: 0px;
+        flex-grow: 1;
+        width: 100%;
+        color: rgb(109, 109, 109);
+        fill: currentColor;
+    }
+    .icondiv {
+        margin-top: 8px;
+        margin-bottom: 6px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .anch-span {
+        position: relative;
+        line-height: 18px;
+        letter-spacing: 0.12px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Titillium Web";
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-wrap: normal;
+    }
+    .anch-active {
+        color: black;
+    }
+    /* .anch-span::after {
+        display: flex;
+        position: absolute;
+        height: 2px;
+        bottom: 0px;
+        background-color: rgb(105, 165, 0);
+        right: 0;
+        left: 0;
+        content: "";
+        border-radius: 999px;
+        opacity: 1;
+    } */
+    /* .anch-span::after {
+        display: flex;
+        height: 2px;
+        bottom: 0px;
+        background-color: rgb(105, 165, 0);
+        right: 0;
+        left: 0;
+        content: "";
+    } */
+
+    /* .label {
+    }
     .anch {
         display: flex;
         align-items: center;
@@ -80,9 +137,9 @@ plusBottomNavigationAction.styles = css`
     }
     .anch-span {
         position: relative;
-    }
+    } */
 
-    .label-active:after {
+    /* .label-active:after {
         display: flex;
         position: absolute;
         height: 2px;
@@ -93,7 +150,7 @@ plusBottomNavigationAction.styles = css`
         content: "";
 
         border-radius: 999px;
-    }
+    } */
     /* .col-container {
         display: table; 
         width: 100%; 
@@ -157,3 +214,6 @@ customElements.define(
     "plus-bottom-navigation-action",
     PlusBottomNavigationAction
 );
+function useSlot(refSlotIcon: Ref<any>) {
+    throw new Error("Function not implemented.");
+}
