@@ -1,9 +1,11 @@
 body {
-    background-color: rgb(249, 247, 247);
 }
-plus-bottom-navigation-action {
+
+/* plus-bottom-navigation-action {
     display: flex;
     width: 100%;
-}
-plus-bottom-navigation {
+} */
+html {
+    width: 100vw;
+    height: 100vh;
 }
