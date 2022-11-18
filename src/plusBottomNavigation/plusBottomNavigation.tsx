@@ -1,9 +1,23 @@
-import { c, css, Props, useRef, useState } from "atomico/core";
+import { c, css, Props, useRef, useState, Ref, useProp } from "atomico/core";
+import { useSlot } from "@atomico/hooks/use-slot";
+import { PlusBottomNavigationAction } from "../plusBottomNavigationAction/plusBottomNavigationAction";
 
 function plusBottomNavigation(props: Props<typeof plusBottomNavigation>) {
     const [flaoting, setFloating] = useState(true);
-    const [active, setActive] = useState("home");
+    const [value, setValue] = useProp("value");
 
+    // console.log(active);
+    const ref = useRef();
+    const children = useSlot(ref, (eleo) => eleo.label);
+    console.log(
+        "firstchildren",
+        children.filter((el) => {
+            console.log("elchi", el);
+        }),
+        ref.current
+    );
+    console.log("firstvalue :>> ", value);
+    console.log("firstchilderensdad :>> ", children);
     return (
         <host shadowDom>
             <div class="all">
@@ -18,8 +32,15 @@ function plusBottomNavigation(props: Props<typeof plusBottomNavigation>) {
                     </defs>
                 </svg>
                 {flaoting && <div class="toclip"></div>}
-                <div class="alla" onclick={(e) => {}}>
-                    <slot></slot>
+                <div
+                    class="alla"
+                    onclick={(e) => {
+                        setValue(e.target.label);
+                        console.log("firstcccc", e.target.label);
+                    }}
+                >
+                    {/* <plus-bottom-navigation-action label="Start"></plus-bottom-navigation-action> */}
+                    <slot ref={ref}></slot>
                 </div>
             </div>
         </host>
@@ -29,12 +50,13 @@ function plusBottomNavigation(props: Props<typeof plusBottomNavigation>) {
 plusBottomNavigation.props = {
     value: {
         type: String,
-        value: "home",
+        reflect: true,
     },
 };
 
 plusBottomNavigation.styles = css`
     :host {
+        width: 100%;
     }
 
     .all {
@@ -53,6 +75,7 @@ plusBottomNavigation.styles = css`
         display: flex;
         clip-path: url(#bottom-navigation-mask);
         padding-top: 16px;
+
         padding-bottom: 12px;
         justify-content: space-between;
         background-color: rgb(255, 255, 255);
@@ -61,6 +84,7 @@ plusBottomNavigation.styles = css`
         width: 100%;
         padding-right: 0px;
         padding-left: 0px;
+        cursor: pointer;
     }
 
     .toclip {
@@ -99,9 +123,6 @@ plusBottomNavigation.styles = css`
 export const PlusBottomNavigation = c(plusBottomNavigation);
 
 customElements.define("plus-bottom-navigation", PlusBottomNavigation);
-function useSlot(refSlotIcon: Ref<any>) {
-    throw new Error("Function not implemented.");
-}
 
 // onClick={({ currentTarget, target }) => {
 //     currentTarget.assignedElements().map((element) => {

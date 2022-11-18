@@ -1,29 +1,46 @@
-import { c, css, Props, Ref, useEvent, useRef, useState } from "atomico/core";
+import {
+    c,
+    css,
+    Props,
+    Ref,
+    useEvent,
+    useProp,
+    useRef,
+    useState,
+} from "atomico/core";
+import { useSlot } from "@atomico/hooks/use-slot";
 
 function plusBottomNavigationAction(
     props: Props<typeof plusBottomNavigationAction>
 ) {
     // const dispatch = useEvent("Click", { bubbles: true, composed: true });
+    // const [flaoting, setFloating] = useState(true)
+
+    const [focused, setFocused] = useProp("focused");
     const ref = useRef();
-    const children = useSlot(ref);
+    // const schildren = useSlot(ref);
+    console.log("ref", ref.current);
+
     return (
         <host shadowDom>
             <a
                 role="button"
                 tabindex="0"
-                class="anch"
-
+                class={`anch ${focused ? "active" : "not"}`}
                 // onclick={dispatch}
+                onclick={({ currentTarget }) => {
+                    console.log("first", { currentTarget });
+                    setFocused(!focused);
+
+                    console.log("e.target", { currentTarget }.currentTarget);
+                }}
+                cloneNode
             >
                 <div class="icondiv">
                     <slot ref={ref} />
-                    <h1>
-                        Slot:
-                        {children.filter((el) => el instanceof Element).length}
-                    </h1>
                 </div>
-
-                <span class="anch-span">{props.label}</span>
+                {props.icon}
+                {<span class="anch-span">{props.label}</span>}
             </a>
         </host>
     );
@@ -32,7 +49,16 @@ function plusBottomNavigationAction(
 plusBottomNavigationAction.props = {
     label: {
         type: String,
-        value: "sdsd",
+
+        reflect: true,
+    },
+    value: {
+        type: String,
+        value: "",
+    },
+    focused: {
+        type: Boolean,
+        reflect: true,
     },
 };
 plusBottomNavigationAction.styles = css`
@@ -40,11 +66,25 @@ plusBottomNavigationAction.styles = css`
         display: flex;
         width: 100%;
     }
+    .offf {
+    }
+    .onn {
+        background-color: rgb(92, 38, 38);
+    }
+    /* .toclip {
+        border-radius: 999px;
+        width: 72px;
+        min-height: 72px;
+        margin-left: -36px;
+        left: 50%;
+        background-color: rgb(255, 255, 255);
+
+        justify-content: center;
+    } */
 
     .anch {
         display: flex;
 
-        cursor: pointer;
         margin-bottom: -2px;
         justify-items: center;
         align-items: center;
@@ -74,22 +114,13 @@ plusBottomNavigationAction.styles = css`
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow-wrap: normal;
+        color: rgb(109, 109, 109);
+        color: currentColor;
     }
     .anch-active {
         color: black;
     }
-    /* .anch-span::after {
-        display: flex;
-        position: absolute;
-        height: 2px;
-        bottom: 0px;
-        background-color: rgb(105, 165, 0);
-        right: 0;
-        left: 0;
-        content: "";
-        border-radius: 999px;
-        opacity: 1;
-    } */
+
     /* .anch-span::after {
         display: flex;
         height: 2px;
@@ -214,6 +245,3 @@ customElements.define(
     "plus-bottom-navigation-action",
     PlusBottomNavigationAction
 );
-function useSlot(refSlotIcon: Ref<any>) {
-    throw new Error("Function not implemented.");
-}
